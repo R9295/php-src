@@ -1398,7 +1398,7 @@ static zend_persistent_script *store_script_in_file_cache(zend_persistent_script
 	if ((char*)new_persistent_script->mem + new_persistent_script->size != (char*)ZCG(mem)) {
 		zend_accel_error(
 			((char*)new_persistent_script->mem + new_persistent_script->size < (char*)ZCG(mem)) ? ACCEL_LOG_ERROR : ACCEL_LOG_WARNING,
-			"Internal error: wrong size calculation: %s start=" ZEND_ADDR_FMT ", end=" ZEND_ADDR_FMT ", real=" ZEND_ADDR_FMT "\n",
+			"Internal error: wrong size calculation\n",
 			ZSTR_VAL(new_persistent_script->script.filename),
 			(size_t)new_persistent_script->mem,
 			(size_t)((char *)new_persistent_script->mem + new_persistent_script->size),
@@ -1558,7 +1558,7 @@ static zend_persistent_script *cache_script_in_shared_memory(zend_persistent_scr
 	if ((char*)new_persistent_script->mem + new_persistent_script->size != (char*)ZCG(mem)) {
 		zend_accel_error(
 			((char*)new_persistent_script->mem + new_persistent_script->size < (char*)ZCG(mem)) ? ACCEL_LOG_ERROR : ACCEL_LOG_WARNING,
-			"Internal error: wrong size calculation: %s start=" ZEND_ADDR_FMT ", end=" ZEND_ADDR_FMT ", real=" ZEND_ADDR_FMT "\n",
+			"Internal error: wrong size calculation\n",
 			ZSTR_VAL(new_persistent_script->script.filename),
 			(size_t)new_persistent_script->mem,
 			(size_t)((char *)new_persistent_script->mem + new_persistent_script->size),
@@ -4177,7 +4177,7 @@ static zend_persistent_script* preload_script_in_shared_memory(zend_persistent_s
 	if ((char*)new_persistent_script->mem + new_persistent_script->size != (char*)ZCG(mem)) {
 		zend_accel_error(
 			((char*)new_persistent_script->mem + new_persistent_script->size < (char*)ZCG(mem)) ? ACCEL_LOG_ERROR : ACCEL_LOG_WARNING,
-			"Internal error: wrong size calculation: %s start=" ZEND_ADDR_FMT ", end=" ZEND_ADDR_FMT ", real=" ZEND_ADDR_FMT "\n",
+			"Internal error: wrong size calculation:\n",
 			ZSTR_VAL(new_persistent_script->script.filename),
 			(size_t)new_persistent_script->mem,
 			(size_t)((char *)new_persistent_script->mem + new_persistent_script->size),

@@ -203,12 +203,6 @@ static int phar_tar_process_metadata(phar_entry_info *entry, php_stream *fp) /* 
 }
 /* }}} */
 
-#if !HAVE_STRNLEN
-static size_t strnlen(const char *s, size_t maxlen) {
-        char *r = (char *)memchr(s, '\0', maxlen);
-        return r ? r-s : maxlen;
-}
-#endif
 
 int phar_parse_tarfile(php_stream* fp, char *fname, size_t fname_len, char *alias, size_t alias_len, phar_archive_data** pphar, int is_data, uint32_t compression, char **error) /* {{{ */
 {
