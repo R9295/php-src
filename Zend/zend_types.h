@@ -289,15 +289,6 @@ struct _zend_array {
 #define HT_MIN_MASK ((uint32_t) -2)
 #define HT_MIN_SIZE 8
 
-#if SIZEOF_SIZE_T == 4
-# define HT_MAX_SIZE 0x04000000 /* small enough to avoid overflow checks */
-# define HT_HASH_TO_BUCKET_EX(data, idx) \
-	((Bucket*)((char*)(data) + (idx)))
-# define HT_IDX_TO_HASH(idx) \
-	((idx) * sizeof(Bucket))
-# define HT_HASH_TO_IDX(idx) \
-	((idx) / sizeof(Bucket))
-#elif SIZEOF_SIZE_T == 8
 # define HT_MAX_SIZE 0x80000000
 # define HT_HASH_TO_BUCKET_EX(data, idx) \
 	((data) + (idx))
@@ -305,9 +296,6 @@ struct _zend_array {
 	(idx)
 # define HT_HASH_TO_IDX(idx) \
 	(idx)
-#else
-# error "Unknown SIZEOF_SIZE_T"
-#endif
 
 #define HT_HASH_EX(data, idx) \
 	((uint32_t*)(data))[(int32_t)(idx)]
@@ -1075,23 +1063,11 @@ static zend_always_inline uint32_t zval_delref_p(zval* pz) {
 	return GC_DELREF(Z_COUNTED_P(pz));
 }
 
-#if SIZEOF_SIZE_T == 4
-# define ZVAL_COPY_VALUE_EX(z, v, gc, t)				\
-	do {												\
-		uint32_t _w2 = v->value.ww.w2;					\
-		Z_COUNTED_P(z) = gc;							\
-		z->value.ww.w2 = _w2;							\
-		Z_TYPE_INFO_P(z) = t;							\
-	} while (0)
-#elif SIZEOF_SIZE_T == 8
 # define ZVAL_COPY_VALUE_EX(z, v, gc, t)				\
 	do {												\
 		Z_COUNTED_P(z) = gc;							\
 		Z_TYPE_INFO_P(z) = t;							\
 	} while (0)
-#else
-# error "Unknown SIZEOF_SIZE_T"
-#endif
 
 #define ZVAL_COPY_VALUE(z, v)							\
 	do {												\

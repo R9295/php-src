@@ -52,13 +52,8 @@ typedef struct _zend_op zend_op;
 /* On 64-bit systems less optimal, but more compact VM code leads to better
  * performance. So on 32-bit systems we use absolute addresses for jump
  * targets and constants, but on 64-bit systems realtive 32-bit offsets */
-#if SIZEOF_SIZE_T == 4
-# define ZEND_USE_ABS_JMP_ADDR      1
-# define ZEND_USE_ABS_CONST_ADDR    1
-#else
 # define ZEND_USE_ABS_JMP_ADDR      0
 # define ZEND_USE_ABS_CONST_ADDR    0
-#endif
 
 typedef union _znode_op {
 	uint32_t      constant;

@@ -5237,19 +5237,11 @@ const struct {
 #ifdef HAVE_LONG_DOUBLE
 	{"long double", &zend_ffi_type_long_double},
 #endif
-#if SIZEOF_SIZE_T == 4
-	{"uintptr_t",  &zend_ffi_type_uint32},
-	{"intptr_t",   &zend_ffi_type_sint32},
-	{"size_t",     &zend_ffi_type_uint32},
-	{"ssize_t",    &zend_ffi_type_sint32},
-	{"ptrdiff_t",  &zend_ffi_type_sint32},
-#else
 	{"uintptr_t",  &zend_ffi_type_uint64},
 	{"intptr_t",   &zend_ffi_type_sint64},
 	{"size_t",     &zend_ffi_type_uint64},
 	{"ssize_t",    &zend_ffi_type_sint64},
 	{"ptrdiff_t",  &zend_ffi_type_sint64},
-#endif
 #if SIZEOF_OFF_T == 4
 	{"off_t",      &zend_ffi_type_sint32},
 #else

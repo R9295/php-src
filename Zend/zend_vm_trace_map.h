@@ -33,12 +33,7 @@
 
 #ifdef _WIN64
 # define ADDR_FMT "%016I64x"
-#elif SIZEOF_SIZE_T == 4
-# define ADDR_FMT "%08zx"
-#elif SIZEOF_SIZE_T == 8
 # define ADDR_FMT "%016zx"
-#else
-# error "Unknown SIZEOF_SIZE_T"
 #endif
 
 static HashTable vm_trace_ht;

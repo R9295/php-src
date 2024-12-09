@@ -54,13 +54,8 @@ typedef uintptr_t tsrm_uintptr_t;
 # include <st.h>
 #endif
 
-#if SIZEOF_SIZE_T == 4
-# define TSRM_ALIGNED_SIZE(size) \
-	(((size) + INT32_C(15)) & ~INT32_C(15))
-#else
 # define TSRM_ALIGNED_SIZE(size) \
 	(((size) + INT64_C(15)) & ~INT64_C(15))
-#endif
 
 typedef int ts_rsrc_id;
 

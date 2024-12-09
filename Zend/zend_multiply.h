@@ -284,20 +284,6 @@ static zend_always_inline size_t zend_safe_address(size_t nmemb, size_t size, si
         return res;
 }
 
-#elif SIZEOF_SIZE_T == 4
-
-static zend_always_inline size_t zend_safe_address(size_t nmemb, size_t size, size_t offset, int *overflow)
-{
-	uint64_t res = (uint64_t) nmemb * (uint64_t) size + (uint64_t) offset;
-
-	if (UNEXPECTED(res > UINT64_C(0xFFFFFFFF))) {
-		*overflow = 1;
-		return 0;
-	}
-	*overflow = 0;
-	return (size_t) res;
-}
-
 #else
 
 static zend_always_inline size_t zend_safe_address(size_t nmemb, size_t size, size_t offset, int *overflow)

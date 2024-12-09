@@ -628,13 +628,8 @@ TSRM_API int shmget(key_t key, size_t size, int flags)
 
 	if (!shm_handle && !info_handle) {
 		if (flags & IPC_CREAT) {
-#if SIZEOF_SIZE_T == 8
 			DWORD high = size >> 32;
 			DWORD low = (DWORD)size;
-#else
-			DWORD high = 0;
-			DWORD low = size;
-#endif
 			shm_handle	= CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, high, low, key == IPC_PRIVATE ? NULL : shm_segment);
 			info_handle	= CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(shm->descriptor), key == IPC_PRIVATE ? NULL : shm_info);
 			created		= TRUE;

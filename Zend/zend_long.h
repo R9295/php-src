@@ -116,14 +116,5 @@ typedef int32_t zend_off_t;
 
 static const char long_min_digits[] = LONG_MIN_DIGITS;
 
-#ifdef _WIN64
-# define ZEND_ADDR_FMT "0x%016I64x"
-#elif SIZEOF_SIZE_T == 4
-# define ZEND_ADDR_FMT "0x%08zx"
-#elif SIZEOF_SIZE_T == 8
-# define ZEND_ADDR_FMT "0x%016zx"
-#else
-# error "Unknown SIZEOF_SIZE_T"
-#endif
 
 #endif /* ZEND_LONG_H */
