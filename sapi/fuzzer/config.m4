@@ -74,11 +74,7 @@ if test "$PHP_FUZZER" != "no"; then
 
   PHP_ADD_SOURCES_X([sapi/fuzzer], [fuzzer-sapi.c], [], FUZZER_COMMON_OBJS)
 
-  PHP_FUZZER_TARGET([parser], PHP_FUZZER_PARSER_OBJS)
   PHP_FUZZER_TARGET([execute], PHP_FUZZER_EXECUTE_OBJS)
-  PHP_FUZZER_TARGET([unserialize], PHP_FUZZER_UNSERIALIZE_OBJS)
-  PHP_FUZZER_TARGET([unserializehash], PHP_FUZZER_UNSERIALIZEHASH_OBJS)
-  PHP_FUZZER_TARGET([json], PHP_FUZZER_JSON_OBJS)
 
   if test -n "$enable_exif" && test "$enable_exif" != "no"; then
     PHP_FUZZER_TARGET([exif], PHP_FUZZER_EXIF_OBJS)
